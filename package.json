@@ -1,0 +1,20 @@
+{
+  "name": "learn_backend",
+  "version": "1.0.0",
+  "description": "the first simple app to deploy",
+  "keywords": [
+    "node",
+    "backend"
+  ],
+  "license": "ISC",
+  "author": "Muhammad Hasnain Mughal",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}

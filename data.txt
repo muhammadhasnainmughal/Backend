@@ -1,0 +1,7 @@
+this is my data;
+023-12-0003
+Hello World
+We are learning NodeJS
+Hello, World!
+Hello, World!
+Hello, NODEJS!Hello, World!Hello, NODEJS!Hello, NODEJS!Hello, NODEJS!

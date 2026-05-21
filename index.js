@@ -17,7 +17,7 @@ const port = process.env.PORT
 
 // middleware to parse json data in request body
 app.use(express.json());
-app.set('etag', false);
+//app.set('etag', false);
 
 // for rendering html files
 app.set('view engine', 'ejs')
@@ -99,15 +99,6 @@ app.get('/deletefolder', (req, res) => {
     }
     res.send('Folder deleted successfully');
   });
-});
-
-app.post('/login', (req, res) => {
-
-    const email = req.body.email;
-    const password = req.body.password;
-
-    res.send("Login Success");
-
 });
 
 //create server

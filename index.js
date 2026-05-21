@@ -1,28 +1,34 @@
 require('dotenv').config()
+
 // third party module
 const express = require('express')
+
+// core modules
 const http = require('http')
 const fs = require('fs')
+
 // local module
 const add = require('./add.js') 
+const userRoutes = require('./routes/user');
 
 // express application
 const app = express()
 const port = process.env.PORT
 
-// default routes
+// middleware to parse json data in request body
+app.use(express.json());
+app.set('etag', false);
+
+// for rendering html files
+app.set('view engine', 'ejs')
+
+// default routes to render the html files
 app.get('/', (req, res) => {
-  res.send('HOME PAGE')
+  res.render('home')
 })
 
 // make my own routes
-app.get('/login', (req, res) => {
-  res.send('<h1>LOGIN PAGE</h1>')
-})
-
-app.get('/signup', (req, res) => {
-  res.send('<h1>SIGNUP PAGE</h1>')
-})
+app.use('/user', userRoutes)
 
 app.get('/profile', (req, res) => {
   res.send('<h1>PROFILE PAGE</h1>')
@@ -95,11 +101,20 @@ app.get('/deletefolder', (req, res) => {
   });
 });
 
+app.post('/login', (req, res) => {
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    res.send("Login Success");
+
+});
+
 //create server
-http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World!');
-}).listen(8080);
+// http.createServer((req, res) => {
+//   res.writeHead(200, {'Content-Type': 'text/plain'});
+//   res.end('Hello World!');
+// }).listen(8080);
 
 
 

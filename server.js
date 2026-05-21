@@ -3,16 +3,18 @@ const express = require('express');
 const app = express();
 const port = 3000
 
+//middleware
 app.use(express.json());
 
 
 let user = [
     {id: 1, name: "hasnain"},
-    {id: 2, name: "ali"}
+    {id: 2, name: "ali"},
+    {id: 3, name: "ahmed"}
 ];
 
 //GET
-app.get('/show', (req,res) => {
+app.get('/alluser', (req,res) => {
 
     res.json(user)
     
@@ -27,7 +29,7 @@ app.get('/showsingle/:id', (req,res) => {
 
     if(!getuser)
     {
-        return res.send('User not found')
+        return res.status(404).json({message: "user not found"})
     }
 
     res.json(getuser)
@@ -42,7 +44,8 @@ app.post('/insertuser',(req,res) => {
 
     user.push(newuser)
 
-    res.status(201).json({message: "new user created",user : newuser});
+    res.status(201)
+    res.json({message: "new user created",user : newuser});
 });
 
 //PUT user
@@ -67,7 +70,7 @@ app.delete('/deleteuser/:id', (req, res) => {
 
     const id = req.params.id;
 
-    users = users.filter(u => u.id != id);
+    users = user.filter(u => u.id != id);
 
     res.json({
         message: "User deleted"
